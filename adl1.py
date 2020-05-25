@@ -64,19 +64,19 @@ cluster = HTCondorCluster(cores=4,
                           disk="1GB",
                           log_directory="logs",
                           silence_logs="debug",
-                          scheduler_options={"dashboard_address":"9998"},
+                          #scheduler_options={"dashboard_address":"9998"},
                           # HTCondor submit script
                           job_extra={"universe": "docker",
                                      # Generated in coffea-casa:latest
                                      "encrypt_input_files": "/etc/cmsaf-secrets/xcache_token",
                                      "docker_network_type": "host",
                                      "docker_image": "oshadura/coffea-casa-analysis:latest",
-                                     "container_service_names": "condor",
-                                     "condor_container_port": "8787",
+                                     "container_service_names": "dask",
+                                     "dask_container_port": "8787",
                                      "should_transfer_files": "YES",
                                      "when_to_transfer_output": "ON_EXIT"})
-cluster.scale(jobs=1)
-client = Client(cluster, security=sec_dask)
+cluster.scale(jobs=2)
+client = Client(cluster)#, security=sec_dask)
 
 #cluster.scale(jobs=2)
 #client = Client(cluster)
