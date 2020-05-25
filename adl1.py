@@ -75,7 +75,7 @@ cluster = HTCondorCluster(cores=4,
                                      "dask_container_port": "8787",
                                      "should_transfer_files": "YES",
                                      "when_to_transfer_output": "ON_EXIT"})
-cluster.scale(jobs=2)
+cluster.scale(jobs=2) # 1 job is working on T3
 client = Client(cluster)#, security=sec_dask)
 
 #cluster.scale(jobs=2)
