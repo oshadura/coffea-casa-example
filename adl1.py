@@ -74,7 +74,7 @@ cluster = HTCondorCluster(cores=4,
                                      # Generated in coffea-casa:latest
                                      #"encrypt_input_files": "/etc/cmsaf-secrets/xcache_token",
                                      #"docker_network_type": "host",
-                                     "docker_image": "oshadura/coffea-casa-analysis:0.1.0", # or docker_image # =>Brian's test
+                                     "docker_image": "oshadura/coffea-casa-analysis:0.1.1", # or docker_image # =>Brian's test
                                      "container_service_names": "dask",
                                      "dask_container_port": "8787",
                                      "should_transfer_files": "YES",
