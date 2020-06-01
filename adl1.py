@@ -71,10 +71,10 @@ cluster = HTCondorCluster(cores=4,
                           scheduler_options= {"dashboard_address":"8786","port":8787, "external_address": "129.93.183.33:8787"},
                           # HTCondor submit script
                           job_extra={"universe": "docker",
-                                     # Generated in coffea-casa:0.1.3
+                                     # To be used with coffea-casa:0.1.4
                                      "encrypt_input_files": "/etc/cmsaf-secrets/xcache_token",
                                      #"docker_network_type": "host",
-                                     "docker_image": "oshadura/coffea-casa-analysis:0.1.3", 
+                                     "docker_image": "oshadura/coffea-casa-analysis:0.1.6", 
                                      "container_service_names": "dask",
                                      "dask_container_port": "8787",
                                      "should_transfer_files": "YES",
