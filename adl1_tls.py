@@ -55,7 +55,9 @@ class METProcessor(processor.ProcessorABC):
     
 sec_dask = Security(tls_ca_file='/etc/cmsaf-secrets/ca.pem',
                tls_worker_cert='/etc/cmsaf-secrets/usercert.pem',
-               #tls_client_key='/etc/cmsaf-secrets/usercert.pem',
+               tls_worker_key='/etc/cmsaf-secrets/usercert.pem',
+               tls_client_cert='/etc/cmsaf-secrets/usercert.pem',
+               tls_client_key='/etc/cmsaf-secrets/usercert.pem',
                tls_scheduler_cert='/etc/cmsaf-secrets/hostcert.pem',
                tls_scheduler_key='/etc/cmsaf-secrets/hostcert.pem',
                require_encryption=True)
@@ -67,7 +69,8 @@ cluster = HTCondorCluster(cores=4,
                           disk="1GB",
                           log_directory="logs",
                           silence_logs="debug",
-                          scheduler_options= {"dashboard_address":"8786","port":8787, "external_address": "129.93.183.33:8787"},
+                          security = sec_dask,
+                          scheduler_options= {"protocol": "tls://","dashboard_address":"8786","port":8787, "external_address": "tls://129.93.183.33:8787"},
                           # HTCondor submit script
                           job_extra={"universe": "docker",
                                      # To be used with coffea-casa:0.1.7
